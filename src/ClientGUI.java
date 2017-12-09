@@ -202,6 +202,45 @@ public class ClientGUI extends JFrame implements ActionListener{
         else if(e.getSource() == sendTo){
             recipient = (String)sendTo.getSelectedItem();
         }
+        
+        else if(e.getSource() == checkBtn){
+            checkprime();
+        }
+    }
+    
+    public void checkprime(){
+        int prime1 = Integer.parseInt(pnum1.getText());
+        int prime2 = Integer.parseInt(pnum2.getText());
 
+        if(prime1 % 2 == 0){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Prime 1 is not a prime number",
+                    "prime error", JOptionPane.PLAIN_MESSAGE );
+        }
+        if(prime2 % 2 == 0){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Prime 2 is not a prime number",
+                    "prime error", JOptionPane.PLAIN_MESSAGE );
+        }
+
+        for(int i=3;ii<=prime1;i+=2) {
+            if(prime1%i==0){
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Prime 1 is not a prime number",
+                        "prime error", JOptionPane.PLAIN_MESSAGE );
+            }
+        }
+
+        for(int i=3;ii<=prime2;i+=2) {
+            if(prime2%i==0){
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Prime 2 is not a prime number",
+                        "prime error", JOptionPane.PLAIN_MESSAGE );
+            }
+        }
     }
 }
