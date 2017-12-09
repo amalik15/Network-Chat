@@ -225,7 +225,7 @@ public class ClientGUI extends JFrame implements ActionListener{
                     "prime error", JOptionPane.PLAIN_MESSAGE );
         }
 
-        for(int i=3;ii<=prime1;i+=2) {
+        for(int i=3;i<=prime1;i+=2) {
             if(prime1%i==0){
                 JOptionPane.showMessageDialog(
                         null,
@@ -234,7 +234,7 @@ public class ClientGUI extends JFrame implements ActionListener{
             }
         }
 
-        for(int i=3;ii<=prime2;i+=2) {
+        for(int i=3;i<=prime2;i+=2) {
             if(prime2%i==0){
                 JOptionPane.showMessageDialog(
                         null,
