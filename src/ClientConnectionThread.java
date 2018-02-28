@@ -1,6 +1,3 @@
-
-
-
 import java.net.*;
 import java.io.*;
 import java.awt.*;
@@ -37,31 +34,26 @@ public class ClientConnectionThread
         //sendButton = g.sendBtn;
         //connectButton = g.connectBtn;
         connected = g.connected;
-
-
-    } // end CountDown constructor
-
-
+    } 
+    
+    //this function is called when a messege is being sent
     public void doSendMessage()
     {
         try
         {
             out.println("m " +gui.ClientID + " "+ gui.clientsIDS.get(gui.recipient)  + " " +message.getText());
-
-
-            //history.insert ("From Server: " + in.readLine() + "\n" , 0);
         }
         catch (Exception e)
         {
             history.insert ("Error in processing message ", 0);
         }
     }
-
+    
+    //tell the server to remove it from online users
     public void leave(){
         try
         {
             out.println("l " + gui.ClientID );
-
         }
         catch (Exception e)
         {
@@ -80,8 +72,7 @@ public class ClientConnectionThread
                 portNum = Integer.parseInt(portInfo.getText());
                 echoSocket = new Socket(machineName, portNum );
                 out = new PrintWriter(echoSocket.getOutputStream(), true);
-                in = new BufferedReader(new InputStreamReader(
-                        echoSocket.getInputStream()));
+                in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
 
                 // start a new thread to read from the socket
                 new CommunicationReadThread (in, this);
@@ -89,20 +80,20 @@ public class ClientConnectionThread
                 //gui.sendBtn.setEnabled(true);
                 gui.connected = true;
                 gui.connectBtn.setText("Disconnect from Server");
-            } catch (NumberFormatException e) {
+            } 
+            catch (NumberFormatException e) {
                 gui.chatbox.insert ( "Server Port must be an integer\n", 0);
-            } catch (UnknownHostException e) {
+            } 
+            catch (UnknownHostException e) {
                 gui.chatbox.insert("Don't know about host: " + machineName , 0);
-            } catch (IOException e) {
+            } 
+            catch (IOException e) {
                 gui.chatbox.insert ("Couldn't get I/O for "
                         + "the connection to: " + machineName , 0);
             }
-
         }
-        else
-        {
-            try
-            {
+        else{
+            try{
                 out.close();
                 in.close();
                 echoSocket.close();
@@ -110,13 +101,9 @@ public class ClientConnectionThread
                 connected = false;
                 connectButton.setText("Connect to Server");
             }
-            catch (IOException e)
-            {
+            catch (IOException e){
                 history.insert ("Error in closing down Socket ", 0);
             }
         }
-
-
     }
-
-} // end class EchoServer3
+}
