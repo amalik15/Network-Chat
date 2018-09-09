@@ -31,8 +31,6 @@ public class ClientConnectionThread
         portInfo = g.servPort;
         message = g.msg;
         history = g.chatbox;
-        //sendButton = g.sendBtn;
-        //connectButton = g.connectBtn;
         connected = g.connected;
     } 
     
@@ -77,7 +75,6 @@ public class ClientConnectionThread
                 // start a new thread to read from the socket
                 new CommunicationReadThread (in, this);
 
-                //gui.sendBtn.setEnabled(true);
                 gui.connected = true;
                 gui.connectBtn.setText("Disconnect from Server");
             } 

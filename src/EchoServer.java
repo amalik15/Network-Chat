@@ -45,8 +45,6 @@ public class EchoServer extends JFrame {
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
         panel1.setLayout(new GridLayout(1,3));
-        //container.setSize(700, 700);
-        //container.setLayout( new FlowLayout() );
 
         // create buttons
         running = false;
@@ -55,15 +53,14 @@ public class EchoServer extends JFrame {
         panel1.add( ssButton );
 
         String machineAddress = null;
-        try
-        {
+        try{
             InetAddress addr = InetAddress.getLocalHost();
             machineAddress = addr.getHostAddress();
         }
-        catch (UnknownHostException e)
-        {
+        catch (UnknownHostException e){
             machineAddress = "127.0.0.1";
         }
+
         machineInfo = new JLabel (machineAddress);
         panel1.add(machineInfo );
         portInfo = new JLabel (" Not Listening ");
@@ -74,14 +71,13 @@ public class EchoServer extends JFrame {
         panel2.add( new JScrollPane(history));
 
         WindowListener exit1 = new WindowAdapter() {
-
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
         };
-        container.addWindowListener(exit1);
 
+        container.addWindowListener(exit1);
         container.getContentPane().add(panel1, BorderLayout.NORTH);
         container.getContentPane().add(panel2, BorderLayout.SOUTH);
         container.setSize(new Dimension(500,250));
@@ -94,19 +90,15 @@ public class EchoServer extends JFrame {
     // handle button event
     public void doButton( ActionEvent event )
     {
-        if (running == false)
-        {
+        if (running == false){
             new ConnectionThread (this);
         }
-        else
-        {
+        else{
             serverContinue = false;
             ssButton.setText ("Start Listening");
             portInfo.setText (" Not Listening ");
         }
     }
-
-
 } // end class EchoServer4
 
 

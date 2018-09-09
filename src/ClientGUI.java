@@ -3,7 +3,7 @@
  *
  * CS 342 Fall 2017
  * Professor Troy
- * Project 5 - Network Chat with RSA Encryption
+ * Project 5 - Network Chat
  */
 
 
@@ -34,13 +34,10 @@ public class ClientGUI extends JFrame implements ActionListener{
     JTextField msg;
     JButton connectBtn;
     JButton sendBtn;
-    //*****COPIED******
-    //EDIT BELOW CODE, COPIED DIRECTLY FROM TROY (in future marked by ***COPIED***)
     boolean connected;
     Socket echoSocket;
     PrintWriter out;
     BufferedReader in;
-    //****END COPIED*****
 
     JFrame body;
     ClientConnectionThread connectionThread;
@@ -59,17 +56,10 @@ public class ClientGUI extends JFrame implements ActionListener{
         clientsNames = new Hashtable<Integer,String>();
         clientsIDS = new Hashtable<String, Integer>();
 
-        //
-        //body.setSize(700, 700);
-        //body.setLayout(new BorderLayout());
-
         JPanel ntwkPanel = new JPanel();
         ntwkPanel.setLayout(new GridLayout(5,1));
 
-
-        //***COPIED***
         connected = false;
-        //***END COPIED***
 
         //ntwkPanel stuff
         ntwkPanel.add(new JLabel ("Server IP: ", JLabel.RIGHT));
@@ -94,34 +84,9 @@ public class ClientGUI extends JFrame implements ActionListener{
         ntwkPanel.add( LPanel, BorderLayout.WEST);
         ntwkPanel.add( RPanel, BorderLayout.EAST);
 
-        LPanel.add(new JLabel ("Prime Numer #1: ", JLabel.LEFT));
-        pnum1 = new JTextField("");
-        pnum1.addActionListener(this);
-        LPanel.add(pnum1);
-
-        RPanel.add(new JLabel ("Prime Numer #2: ", JLabel.LEFT));
-        pnum2 = new JTextField("");
-        pnum2.addActionListener(this);
-        RPanel.add(pnum2);
-
-        checkBtn = new JButton("Verify");
-        checkBtn.addActionListener(this);
-        ntwkPanel.add(checkBtn);
-
-        randomBtn = new JButton("Randomize");
-        randomBtn.addActionListener(this);
-        ntwkPanel.add(randomBtn);
-
         body.getContentPane().add(ntwkPanel, BorderLayout.NORTH);
-//  JPanel connectPanel = new JPanel();
-//  connectPanel.setLayout(new BorderLayout());
-//  ntwkPanel.add(connectPanel, BorderLayout.SOUTH);
-
-
-
         //end of ntwkPanel stuff
 
-        //end of ntwkPanel stuff
 
         chatbox = new JTextArea ( 10, 50 );
         chatbox.setEditable(false);
@@ -131,10 +96,6 @@ public class ClientGUI extends JFrame implements ActionListener{
         chatPanel.setLayout(new GridLayout(3,1));
         body.getContentPane().add(chatPanel, BorderLayout.SOUTH);
 
-
-        //chatPanel stuff
-        //String namelist[] = {" ", "UglyBear", "Your Mother-in-law", "Her Majesty, The Queen of England", "Pam from the Office", "0", "1", "2"};
-        //***remove this list once username list is created!!!!***
 
         chatPanel.add(new JLabel("Choose recipient:", JLabel.CENTER));
         sendTo = new JComboBox<>(namelist);
@@ -174,20 +135,9 @@ public class ClientGUI extends JFrame implements ActionListener{
         body.setLocationRelativeTo(null);
         body.setVisible(true);
         body.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
     }
 
-    /*
-    public static void main( String args[] )
-    {
-        ClientGUI app = new ClientGUI();
-        app.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-    }
-    */
     public void actionPerformed ( ActionEvent e) {
-
-
         if ( connected && (e.getSource() == sendBtn || e.getSource() == msg ))
         {
             connectionThread.doSendMessage();

@@ -16,10 +16,7 @@ class CommunicationThread extends Thread
     private EchoServer gui;
     private Vector<PrintWriter> outStreamList;
 
-
-
-    public CommunicationThread (Socket clientSoc, EchoServer ec3,
-                                Vector<PrintWriter> oSL)
+    public CommunicationThread (Socket clientSoc, EchoServer ec3, Vector<PrintWriter> oSL)
     {
         clientSocket = clientSoc;
         gui = ec3;
@@ -39,33 +36,23 @@ class CommunicationThread extends Thread
             outStreamList.add(out);
 
             BufferedReader in = new BufferedReader(new InputStreamReader( clientSocket.getInputStream()));
-
             String inputLine;
 
 
             out.println("i " +Integer.toString( gui.clientNum));
-
             gui.clients.put(gui.clientNum, out);
             gui.clientsNames.put(Integer.toString(gui.clientNum), " ");
             gui.clientNum++;
 
             gui.lock.unlock();
-
-
             while ((inputLine = in.readLine()) != null )
             {
-
-                //System.out.println ("Server: " + inputLine);
                 gui.history.insert (inputLine+"\n", 0);
 
                 if(inputLine.charAt(0) == 'm'){
                     System.out.println(inputLine);
                     String[] splitStr = inputLine.split("\\s+");
                     int key = Integer.parseInt(splitStr[2]);
-
-                    //System.out.println (splitStr[2]);
-
-                    //System.out.println ("clientNum: " + key);
                     PrintWriter sendTo = gui.clients.get(key);
                     sendTo.println(inputLine);
                 }
@@ -79,7 +66,6 @@ class CommunicationThread extends Thread
 
                     for ( PrintWriter out1: outStreamList )
                     {
-                        //System.out.println ("Sending Message");
                         out1.println (newOnlineList);
                     }
                 }
@@ -94,20 +80,10 @@ class CommunicationThread extends Thread
                     String newOnlineList = createNewOnlineList();
                     for ( PrintWriter out1: outStreamList )
                     {
-                        //System.out.println ("Sending Message");
                         out1.println (newOnlineList);
                     }
                 }
 
-                // Loop through the outStreamList and send to all "active" streams
-                //out.println(inputLine);
-                /*
-                for ( PrintWriter out1: outStreamList )
-                {
-                    System.out.println ("Sending Message");
-                    out1.println (inputLine);
-                }
-                */
                 if (inputLine.equals("Bye."))
                     break;
 
@@ -124,7 +100,6 @@ class CommunicationThread extends Thread
         catch (IOException e)
         {
             System.err.println("Problem with Communication Server");
-            //System.exit(1);
         }
     }
 
@@ -155,12 +130,8 @@ class CommunicationThread extends Thread
         String newList = "o";
 
         for( String key: gui.clientsNames.keySet()){
-
             newList = newList + " " + key + "," + gui.clientsNames.get(key);
         }
-
         return newList;
     }
-
-    //public String
 }
