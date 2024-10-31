@@ -17,7 +17,7 @@ This project is a networked chat application that allows multiple clients to con
 
 To compile the project, open a terminal and navigate to the project's root directory. Then, run the following command:
 
-```sh
+```
 javac -d bin src/*.java
 ```
 
@@ -28,9 +28,9 @@ To run the project, follow these steps:
 1.  Open a terminal and navigate to the `bin` directory.
 2.  Run the application use the following command:
 
-        ```sh
-        java MainGUI server
-        ```
+    ```
+    java MainGUI server
+    ```
 
     One instance of the server needs to run. Use the information generated on the server GUI to pass it to the other client instances.
 
