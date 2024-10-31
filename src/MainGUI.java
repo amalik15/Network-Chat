@@ -1,12 +1,3 @@
-/*David Qiao - dqiao4
- *Abdulaziz Malik - amalik11
- *
- * CS 342 Fall 2017
- * Professor Troy
- * Project 5 - Network Chat
- */
-
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -65,8 +56,8 @@ public class MainGUI extends JFrame{
                 public void actionPerformed( ActionEvent e )
                 {
                     JOptionPane.showMessageDialog(
-                            MainGUI.this,"This program was designed by:\nAbdulaziz Malik - amalik11\n"
-                                        + "David Qiao - dqiao4",
+                            MainGUI.this,"This program was designed by:\namalik15\n"
+                                        + "dqiao4",
                                 "About Us", JOptionPane.PLAIN_MESSAGE );
                     }
                 }//end of actionListener
